@@ -13,12 +13,15 @@
 ActiveRecord::Schema.define(version: 2022_03_17_165452) do
 
   create_table "game_questions", force: :cascade do |t|
+    t.integer "question_id"
+    t.integer "game_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "games", force: :cascade do |t|
     t.integer "score"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
