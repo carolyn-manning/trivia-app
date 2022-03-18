@@ -9,11 +9,28 @@
 <body>
     <h1>Trivia</h1>
 
-    <h3>Welcome to the Trivia App. Enter you name below to start a new Game.</h3>
-    <script src="./src/index.js"></script>
-    <form id="new-game-form">
-        <input type="text" id="player-name">
-        <input type="submit" id="player-name" value="Let's Get Started!">
-    </form>
+    <div id="new-game-container">
+        <h3>Welcome to the Trivia App. Enter you name below to start a new Game.</h3>
+        <script src="./src/index.js"></script>
+        <form id="new-game-form">
+            <input type="text" id="player-name">
+            <input type="submit" id="player-name" value="Let's Get Started!">
+        </form>
+    </div>
+
+    <div id="question-container">
+        <h3 id="question-text"> </h3>
+        <ul id="choices">
+        </ul>
+    </div>
+
+    <div id="running-score-container">
+
+    </div>
+
+    <div id="score-board-container">
+        
+    </div>
+
 </body>
 </html>
