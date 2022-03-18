@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 2022_03_17_165452) do
   end
 
   create_table "questions", force: :cascade do |t|
+    t.string "question"
     t.string "choice_1"
     t.string "choice_2"
     t.string "choice_3"

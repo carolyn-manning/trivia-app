@@ -27,5 +27,6 @@ startGameForm.addEventListener("submit", startGame)
 
 function startGame() {
     event.preventDefault()
+    newGameContainer.remove()
     console.log(startGameInput.value)
 }
