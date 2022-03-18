@@ -1,7 +1,8 @@
 const newGameContainer = document.getElementById('new-game-container')
 const startGameForm = document.getElementById('new-game-form')
 const startGameInput = document.getElementById('player-name-input')
-
+const answerChoiceList = document.getElementById('choices')
+const questionText = document.getElementById('question-text')
 // document.addEventListener('DOMContentLoaded', loadNewGameForm);
 
 // function loadNewGameForm() {
@@ -29,4 +30,8 @@ function startGame() {
     event.preventDefault()
     newGameContainer.remove()
     console.log(startGameInput.value)
+    answer = document.createElement('li')
+    answer.innerText = "Test Answer"
+    answerChoiceList.appendChild(answer)
+    questionText.innerText = "Test Question"
 }
