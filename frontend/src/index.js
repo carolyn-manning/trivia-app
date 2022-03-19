@@ -6,7 +6,8 @@ const questionText = document.getElementById('question-text')
 const scoreBoardContatiner = document.getElementById('score-board-container')
 const runningScoreContatiner = document.getElementById('running-score-container')
 const questionContainer = ""
-const userURL = 'http://localhost:3000/users'
+const usersURL = 'http://localhost:3000/users'
+const questionsURL = 'http://localhost:3000/users'
 
 // document.addEventListener('DOMContentLoaded', loadNewGameForm);
 
@@ -45,14 +46,13 @@ function startGame() {
         })
     }
     
-    fetch(userURL, configObj)
+    fetch(usersURL, configObj)
     .then(response => response.json())
     .then(data => {
-        console.log(data[name])
         let name = document.createElement('p')
         let score = document.createElement('p')
         score.innerText = "Score"
-        name.innerText = data[name]
+        name.innerText = data["name"]
         runningScoreContatiner.append(name, score)
     });
        
@@ -67,14 +67,11 @@ function startGame() {
     answerChoiceList.appendChild(answer)
     
     // add event listener with loop startGameForm.addEventListener("submit", startGame)
-
-    
-
-    // let name = document.createElement('p')
-    // let score = document.createElement('p')
-    // score.innerText = "Score"
-    // name.innerText = startGameInput.value
-    // runningScoreContatiner.append(name, score)  
 }
 
+function fetchQuestions() {
+    fetch(questionsURL)
+    .then(response => response.json())
+    .then(data => console.log(data));
+}
 
