@@ -75,8 +75,11 @@ function fetchQuestions() {
         for (let i = 0; i < data.length; i++){
             const question = document.createElement('h3')
             question.innerText = data[i]["question"]
+            question.id = `q-${data[i]["id"]}`
             let answerContainer = document.createElement('ul')
-            questionContainer.append(question, answerContainer)
+            answerContainer.id = `answers-${data[i]["id"]}`
+            question.appendChild(answerContainer)
+            questionContainer.appendChild(question)
 
             answerArray = [data[i]["choice_1"], data[i]["choice_2"], data[i]["choice_3"], data[i]["answer"]]
 
@@ -95,9 +98,10 @@ function fetchQuestions() {
 }
 
 function answerQuestion(e, answer) {
-    console.log(e.target)
     if(e.target.innerText === answer) {
         e.target.style.color = "green"
+        e.target.parentElement.remove()
+        console.log(e.target.parentElement.parentElement)
     } else {
         e.target.style.color = "red"
     }
