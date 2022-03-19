@@ -50,12 +50,12 @@ function startGame() {
     fetch(usersURL, configObj)
     .then(response => response.json())
     .then(data => {
-        let name = document.createElement('p')
+        let title = document.createElement('h3')
         let score = document.createElement('p')
         score.id = "running-score"
         score.innerText = "0"
-        name.innerText = `data["name"]'s Score`
-        runningScoreContatiner.append(name, score)
+        title.innerText = "Your Score"
+        runningScoreContatiner.append(title, score)
     });
        
     newGameContainer.remove()
@@ -118,7 +118,7 @@ function OptUpdateScore() {
     const scoreHTML = document.getElementById("running-score")
     let score = parseInt(scoreHTML.innerText)
     score += 1
-    scoreHTML.innerText = `Score: ${score}`
+    scoreHTML.innerText = `${score}`
 }
 
 
