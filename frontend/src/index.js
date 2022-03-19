@@ -100,8 +100,8 @@ function fetchQuestions() {
 function answerQuestion(e, answer) {
     if(e.target.innerText === answer) {
         e.target.style.color = "green"
-        e.target.parentElement.remove()
-        console.log(e.target.parentElement.parentElement)
+        const questionContainer = e.target.parentElement
+        questionContainer.parentElement.innerText = "CORRECT"
     } else {
         e.target.style.color = "red"
     }
