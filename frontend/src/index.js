@@ -8,6 +8,7 @@ const runningScoreContatiner = document.getElementById('running-score-container'
 const questionContainer = document.getElementById('question-container')
 const usersURL = 'http://localhost:3000/users'
 const questionsURL = 'http://localhost:3000/questions'
+const gamesURL = 'http://localhost:3000/games'
 
 
 // document.addEventListener('DOMContentLoaded', loadNewGameForm);
@@ -35,7 +36,9 @@ startGameForm.addEventListener("submit", startGame)
 
 function startGame() {
     event.preventDefault()
-    
+
+   setTimeout(endGame, 60000)
+
     const configObj = {
         method: "POST", 
         headers: {
@@ -119,6 +122,10 @@ function OptUpdateScore() {
     let score = parseInt(scoreHTML.innerText)
     score += 1
     scoreHTML.innerText = `${score}`
+}
+
+function endGame() {
+    questionContainer.remove()
 }
 
 
