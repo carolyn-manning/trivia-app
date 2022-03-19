@@ -99,11 +99,15 @@ function fetchQuestions() {
 
 function answerQuestion(e, answer) {
     if(e.target.innerText === answer) {
-        e.target.style.color = "green"
         const questionContainer = e.target.parentElement
-        questionContainer.parentElement.innerText = "CORRECT"
+        question = questionContainer.parentElement
+        question.innerText = "CORRECT"
+        question.style.color = "green"
     } else {
-        e.target.style.color = "red"
+        const questionContainer = e.target.parentElement
+        question = questionContainer.parentElement
+        question.innerText = "INCORRECT"
+        question.style.color = "red"
     }
 }
 
