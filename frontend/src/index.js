@@ -8,7 +8,7 @@ const runningScoreContatiner = document.getElementById('running-score-container'
 const questionContainer = document.getElementById('question-container')
 const usersURL = 'http://localhost:3000/users'
 const questionsURL = 'http://localhost:3000/questions'
-const gameURL = `http://localhost:3000/games/${this.id}`
+
 
 // document.addEventListener('DOMContentLoaded', loadNewGameForm);
 
@@ -52,8 +52,9 @@ function startGame() {
     .then(data => {
         let name = document.createElement('p')
         let score = document.createElement('p')
-        score.innerText = "Score"
-        name.innerText = data["name"]
+        score.id = "running-score"
+        score.innerText = "0"
+        name.innerText = `data["name"]'s Score`
         runningScoreContatiner.append(name, score)
     });
        
@@ -104,6 +105,7 @@ function answerQuestion(e, answer) {
         question = questionContainer.parentElement
         question.innerText = "CORRECT"
         question.style.color = "green"
+        OptUpdateScore()
     } else {
         const questionContainer = e.target.parentElement
         question = questionContainer.parentElement
@@ -112,10 +114,11 @@ function answerQuestion(e, answer) {
     }
 }
 
-function updateScore() { 
-    fetch(gameURL)
-    .then(response => response.json())
-    .then(data => {console.log(data)})
+function OptUpdateScore() { 
+    const scoreHTML = document.getElementById("running-score")
+    let score = parseInt(scoreHTML.innerText)
+    score += 1
+    scoreHTML.innerText = `Score: ${score}`
 }
 
 
