@@ -8,6 +8,7 @@ const runningScoreContatiner = document.getElementById('running-score-container'
 const questionContainer = document.getElementById('question-container')
 const usersURL = 'http://localhost:3000/users'
 const questionsURL = 'http://localhost:3000/questions'
+const gameURL = `http://localhost:3000/games/${this.id}`
 
 // document.addEventListener('DOMContentLoaded', loadNewGameForm);
 
@@ -110,4 +111,13 @@ function answerQuestion(e, answer) {
         question.style.color = "red"
     }
 }
+
+function updateScore() { 
+    fetch(gameURL)
+    .then(response => response.json())
+    .then(data => {console.log(data)})
+}
+
+
+
 
