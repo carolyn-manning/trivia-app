@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2022_03_17_165452) do
   end
 
   create_table "games", force: :cascade do |t|
-    t.integer "score"
+    t.integer "score", default: 0
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
