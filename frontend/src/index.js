@@ -83,10 +83,12 @@ function fetchQuestions() {
             for (let n = 0; n < answerArray.length; n++) {
                 let answer = document.createElement('li')
                 answer.innerText = answerArray[n]
-                answer.addEventListener("click", answerQuestion)
                 answerContainer.appendChild(answer)
-        
             }
+            answerContainer.addEventListener("click", (e) => {
+                answerQuestion(e, data[i]['answer'])
+            })
+
         }
     })
     
@@ -94,5 +96,10 @@ function fetchQuestions() {
 
 function answerQuestion(e, answer) {
     console.log(e.target)
+    if(e.target.innerText === answer) {
+        e.target.style.color = "green"
+    } else {
+        e.target.style.color = "red"
+    }
 }
 
