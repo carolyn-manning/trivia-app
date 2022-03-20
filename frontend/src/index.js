@@ -14,7 +14,7 @@ startGameForm.addEventListener("submit", startGame)
 
 function startGame() {
     event.preventDefault()
-    setTimeout(endGame, 30000)
+    setTimeout(Game.endGame, 30000)
     createUserAndGame()
     newGameContainer.remove()
     Question.fetchQuestions()
@@ -47,37 +47,37 @@ function buildRunningScore(data) {
         runningScoreContatiner.append(title, score)
 }
 
-function OptUpdateScore() { 
-    const scoreHTML = document.getElementById("running-score")
-    let score = parseInt(scoreHTML.innerText)
-    score += 1
-    scoreHTML.innerText = `${score}`
-}
+// function UpdateScore() { 
+//     const scoreHTML = document.getElementById("running-score")
+//     let score = parseInt(scoreHTML.innerText)
+//     score += 1
+//     scoreHTML.innerText = `${score}`
+// }
 
-function endGame() {
-    updateScoreInDB()
-    const endContainer = document.getElementById('times-up-container')
-    const endingText = document.createElement("h1")
-    questionContainer.remove()
-    endingText.innerText = "TIMES'S UP!!!"
-    endContainer.appendChild(endingText)
-    setTimeout(Game.fetchScoreboard, 2000)
-}
+// function endGame() {
+//     updateScoreInDB()
+//     const endContainer = document.getElementById('times-up-container')
+//     const endingText = document.createElement("h1")
+//     questionContainer.remove()
+//     endingText.innerText = "TIMES'S UP!!!"
+//     endContainer.appendChild(endingText)
+//     setTimeout(Game.fetchScoreboard, 2000)
+// }
 
-function updateScoreInDB() {
-    const scoreHTML = document.getElementById('running-score')
-    const configObj = {
-        method: "PATCH", 
-        headers: {
-            "Content-Type": 'application/json',
-            "Accept": "application/json",
-        },
-        body: JSON.stringify({
-            score: parseInt(scoreHTML.innerText)
-        })
-    }
-    fetch(`http://localhost:3000/games/${parseInt(scoreHTML.dataset.id)}`, configObj)
-}
+// function updateScoreInDB() {
+//     const scoreHTML = document.getElementById('running-score')
+//     const configObj = {
+//         method: "PATCH", 
+//         headers: {
+//             "Content-Type": 'application/json',
+//             "Accept": "application/json",
+//         },
+//         body: JSON.stringify({
+//             score: parseInt(scoreHTML.innerText)
+//         })
+//     }
+//     fetch(`http://localhost:3000/games/${parseInt(scoreHTML.dataset.id)}`, configObj)
+//}
 
 function fadeOutEffect(fadeTarget) {
     let fadeEffect = setInterval(function () {

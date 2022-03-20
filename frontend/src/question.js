@@ -60,7 +60,7 @@ class Question {
             question.innerText = "CORRECT"
             question.style.color = "green"
             fadeOutEffect(question)
-            OptUpdateScore()
+            Game.updateScoreInHTML()
         } else {
             question.innerText = "INCORRECT"
             question.style.color = "red"

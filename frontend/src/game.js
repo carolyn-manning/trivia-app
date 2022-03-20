@@ -5,6 +5,7 @@ class Game {
     constructor(game) {
         this.score = game.score
         this.user = game.user.name
+        this.id = game.id
         Game.allGames.push(this)
     }
 
@@ -58,7 +59,7 @@ class Game {
             scoreBoardContatiner.append(endText, scoreboard)
     }
 
-    updateScoreInDB() {
+    static updateScoreInDB() {
         const scoreHTML = document.getElementById('running-score')
         const configObj = {
             method: "PATCH", 
@@ -71,6 +72,23 @@ class Game {
             })
         }
         fetch(`http://localhost:3000/games/${parseInt(scoreHTML.dataset.id)}`, configObj)
+    }
+
+    static updateScoreInHTML() { 
+        const scoreHTML = document.getElementById("running-score")
+        let score = parseInt(scoreHTML.innerText)
+        score += 1
+        scoreHTML.innerText = `${score}`
+    }
+
+    static endGame() {
+        Game.updateScoreInDB()
+        const endContainer = document.getElementById('times-up-container')
+        const endingText = document.createElement("h1")
+        questionContainer.remove()
+        endingText.innerText = "TIMES'S UP!!!"
+        endContainer.appendChild(endingText)
+        setTimeout(Game.fetchScoreboard, 2000)
     }
 
 }
