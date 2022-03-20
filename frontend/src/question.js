@@ -17,12 +17,12 @@ class Question {
         fetch(questionsURL)
         .then(response => response.json())
         .then(questions => {
-            for(let question of questions) {let newList = new Question(question)};
+            for(let question of questions) {new Question(question)};
             Question.renderQuestions(questions)
         })
     }
 
-    renderQuestion(question) {
+    renderQuestion() {
         const answerContainer = document.createElement('ul')
         const questionText = document.createElement('h3')
         questionText.innerText = this.question
@@ -36,7 +36,7 @@ class Question {
             answerContainer.appendChild(answer)
         }
         answerContainer.addEventListener("click", (e) => {
-            answerQuestion(e, this.answer)
+            this.answerQuestion(e)
         })
     }
 
@@ -52,4 +52,20 @@ class Question {
             [array[i], array[j]] = [array[j], array[i]];
         }
     }
+
+    answerQuestion(e) {
+        const questionContainer = e.target.parentElement
+        const question = questionContainer.parentElement
+        if(e.target.innerText === this.answer) {
+            question.innerText = "CORRECT"
+            question.style.color = "green"
+            fadeOutEffect(question)
+            OptUpdateScore()
+        } else {
+            question.innerText = "INCORRECT"
+            question.style.color = "red"
+        }
+        fadeOutEffect(question)
+    }
+    
 }
