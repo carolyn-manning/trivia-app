@@ -152,7 +152,24 @@ function fetchScore() {
     .then(response => response.json())
     .then(data => {
         data.sort((a, b) => (a.score < b.score) ? 1 : -1)
-        console.log(data)
+        scoreboard = document.createElement("table")
+        for (let i = 0; i < 25; i++){
+            const row = document.createElement("tr")
+            const name = document.createElement("td")
+            const score = document.createElement("td")
+            score.innerText = `${data[i]['score']}`
+            
+            if(data[i]['user']['name'] === ''){
+                name.innerText = "Unknown Player"
+            } else {
+                name.innerText = `${data[i]['user']['name']}`
+            }
+            
+            row.append(name, score)
+            scoreboard.appendChild(row)
+        }
+        scoreBoardContatiner.appendChild(scoreboard)
+
     })
 }
 
