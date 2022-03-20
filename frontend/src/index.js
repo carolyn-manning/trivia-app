@@ -17,7 +17,7 @@ function startGame() {
     setTimeout(endGame, 30000)
     createUserAndGame()
     newGameContainer.remove()
-    fetchQuestions()
+    Question.fetchQuestions()
 }
 
 function createUserAndGame() {
@@ -47,37 +47,38 @@ function buildRunningScore(data) {
         runningScoreContatiner.append(title, score)
 }
 
-function fetchQuestions() {
-    fetch(questionsURL)
-    .then(response => response.json())
-    .then(data => displayQuestions(data))
-}
+// function fetchQuestions() {
+//     fetch(questionsURL)
+//     .then(response => response.json())
+//     .then(data => displayQuestions(data))
+// }
 
-function displayQuestions(data) {
-    for (let i = 0; i < data.length; i++){
-        const question = document.createElement('h3')
-        question.innerText = data[i]["question"]
-        question.id = `q-${data[i]["id"]}`
-        const answerContainer = document.createElement('ul')
-        question.appendChild(answerContainer)
-        questionContainer.appendChild(question)
+// function displayQuestions(data) {
+//     for (let i = 0; i < data.length; i++){
+//         const question = document.createElement('h3')
+//         question.innerText = data[i]["question"]
+//         question.id = `q-${data[i]["id"]}`
+//         const answerContainer = document.createElement('ul')
+//         question.appendChild(answerContainer)
+//         questionContainer.appendChild(question)
 
-        answerArray = [data[i]["choice_1"], data[i]["choice_2"], data[i]["choice_3"], data[i]["answer"]]
-        shuffleArray(answerArray)
+//         answerArray = [data[i]["choice_1"], data[i]["choice_2"], data[i]["choice_3"], data[i]["answer"]]
+//         shuffleArray(answerArray)
 
-        for (let n = 0; n < answerArray.length; n++) {
-            let answer = document.createElement('li')
-            answer.innerText = answerArray[n]
-            answerContainer.appendChild(answer)
-        }
-        answerContainer.addEventListener("click", (e) => {
-            answerQuestion(e, data[i]['answer'])
-        })
-    }
-}
+//         for (let n = 0; n < answerArray.length; n++) {
+//             let answer = document.createElement('li')
+//             answer.innerText = answerArray[n]
+//             answerContainer.appendChild(answer)
+//         }
+//         answerContainer.addEventListener("click", (e) => {
+//             answerQuestion(e, data[i]['answer'])
+//         })
+//     }
+// }
 
 function answerQuestion(e, answer) {
     const questionContainer = e.target.parentElement
+    console.log(e.target.parentElement)
     question = questionContainer.parentElement
     if(e.target.innerText === answer) {
         question.innerText = "CORRECT"
@@ -180,12 +181,12 @@ function fadeOutEffect(fadeTarget) {
     setTimeout(function() {question.remove()}, 600)
 }
 
-function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-}
+// function shuffleArray(array) {
+//     for (let i = array.length - 1; i > 0; i--) {
+//         const j = Math.floor(Math.random() * (i + 1));
+//         [array[i], array[j]] = [array[j], array[i]];
+//     }
+// }
 
 
 
