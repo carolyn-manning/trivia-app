@@ -14,7 +14,7 @@ startGameForm.addEventListener("submit", startGame)
 
 function startGame() {
     event.preventDefault()
-    setTimeout(endGame, 15000)
+    setTimeout(endGame, 30000)
     createUserAndGame()
     newGameContainer.remove()
     fetchQuestions()
@@ -101,7 +101,11 @@ function OptUpdateScore() {
 
 function endGame() {
     updateScoreInDB()
+    const endContainer = document.getElementById('times-up-container')
+    const endingText = document.createElement("h1")
     questionContainer.remove()
+    endingText.innerText = "TIMES'S UP!!!"
+    endContainer.appendChild(endingText)
     setTimeout(fetchScoreboard, 2000)
 }
 
@@ -128,7 +132,17 @@ function fetchScoreboard() {
 
 function buildScoreboard(data) {
     data.sort((a, b) => (a.score < b.score) ? 1 : -1)
-        scoreboard = document.createElement("table")
+        const scoreboard = document.createElement("table")
+        const rankHeader = document.createElement("th")
+        const nameHeader = document.createElement("th")
+        const scoreHeader = document.createElement("th")
+        const headerRow = document.createElement("tr")
+        rankHeader.innerText = "Rank"
+        nameHeader.innerText = "Name"
+        scoreHeader.innerText = "Score"
+        headerRow.append(rankHeader, nameHeader, scoreHeader)
+        scoreboard.appendChild(headerRow)
+
         for (let i = 0; i < 25; i++){
             const row = document.createElement("tr")
             const name = document.createElement("td")
@@ -146,7 +160,10 @@ function buildScoreboard(data) {
             row.append(rank, name, score)
             scoreboard.appendChild(row)
         }
-        scoreBoardContatiner.appendChild(scoreboard)
+        const endText = document.createElement("h3")
+        endText.innerText = "Let's Take a Look at the Leaderboard"
+        endText.id = "end-text"
+        scoreBoardContatiner.append(endText, scoreboard)
 }
 
 function fadeOutEffect(fadeTarget) {

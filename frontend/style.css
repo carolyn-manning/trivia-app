@@ -32,7 +32,11 @@ table {
     position: absolute;
     margin-left: auto;
     margin-right: auto;
-    padding-top: 150px;
+    padding-top: 10px;
+}
+
+#end-text {
+    padding-top: 60px;
 }
 
 ul {
