@@ -13,8 +13,26 @@ class Game {
         .then(response => response.json())
         .then(games=> {
             for(let game of games) {new Game(game)};
-            renderScoreboard(games)
+            Game.renderScoreboard()
         })
+    }
+
+    renderScore(scoreboard, rankNumber) {
+        const row = document.createElement("tr")
+        const username = document.createElement("td")
+        const score = document.createElement("td")
+        const rank = document.createElement("td")
+        score.innerText = this.score
+        rank.innerText = `${rankNumber}`
+
+        if(this.user === ''){
+            username.innerText = "Unknown Player"
+        } else {
+            username.innerText = this.user
+        }
+                
+        row.append(rank, username, score)
+        scoreboard.appendChild(row)
     }
 
     static renderScoreboard() {
@@ -31,22 +49,9 @@ class Game {
             scoreboard.appendChild(headerRow)
 
             for (let i = 0; i < 25; i++){
-                const row = document.createElement("tr")
-                const name = document.createElement("td")
-                const score = document.createElement("td")
-                const rank = document.createElement("td")
-                score.innerText = `${games[i]['score']}`
-                rank.innerText = `${i + 1}`
-
-                if(this.] === ''){
-                    name.innerText = "Unknown Player"
-                } else {
-                    name.innerText = `${games[i]['user']['name']}`
-                }
-                
-                row.append(rank, name, score)
-                scoreboard.appendChild(row)
+                this.allGames[i].renderScore(scoreboard, i + 1)
             }
+
             const endText = document.createElement("h3")
             endText.innerText = "Let's Take a Look at the Leaderboard"
             endText.id = "end-text"

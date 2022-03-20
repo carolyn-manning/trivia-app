@@ -79,49 +79,6 @@ function updateScoreInDB() {
     fetch(`http://localhost:3000/games/${parseInt(scoreHTML.dataset.id)}`, configObj)
 }
 
-// function fetchScoreboard() {
-//     fetch(gamesURL)
-//     .then(response => response.json())
-//     .then(data => buildScoreboard(data))
-// }
-
-// function buildScoreboard(data) {
-//     data.sort((a, b) => (a.score < b.score) ? 1 : -1)
-//         const scoreboard = document.createElement("table")
-//         const rankHeader = document.createElement("th")
-//         const nameHeader = document.createElement("th")
-//         const scoreHeader = document.createElement("th")
-//         const headerRow = document.createElement("tr")
-//         rankHeader.innerText = "Rank"
-//         nameHeader.innerText = "Name"
-//         scoreHeader.innerText = "Score"
-//         headerRow.append(rankHeader, nameHeader, scoreHeader)
-//         scoreboard.appendChild(headerRow)
-
-//         for (let i = 0; i < 25; i++){
-//             const row = document.createElement("tr")
-//             const name = document.createElement("td")
-//             const score = document.createElement("td")
-//             const rank = document.createElement("td")
-//             score.innerText = `${data[i]['score']}`
-//             rank.innerText = `${i + 1}`
-
-//             if(data[i]['user']['name'] === ''){
-//                 name.innerText = "Unknown Player"
-//             } else {
-//                 name.innerText = `${data[i]['user']['name']}`
-//             }
-            
-//             row.append(rank, name, score)
-//             scoreboard.appendChild(row)
-//         }
-//         const endText = document.createElement("h3")
-//         endText.innerText = "Let's Take a Look at the Leaderboard"
-//         endText.id = "end-text"
-//         scoreBoardContatiner.append(endText, scoreboard)
-// }
-
-
 function fadeOutEffect(fadeTarget) {
     let fadeEffect = setInterval(function () {
         if (!fadeTarget.style.opacity) {
