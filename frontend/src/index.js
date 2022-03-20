@@ -14,7 +14,7 @@ startGameForm.addEventListener("submit", startGame)
 
 function startGame() {
     event.preventDefault()
-    setTimeout(endGame, 60000)
+    setTimeout(endGame, 15000)
     createUserAndGame()
     newGameContainer.remove()
     fetchQuestions()
@@ -102,7 +102,7 @@ function OptUpdateScore() {
 function endGame() {
     updateScoreInDB()
     questionContainer.remove()
-    fetchScoreboard()
+    setTimeout(fetchScoreboard, 2000)
 }
 
 function updateScoreInDB() {
@@ -133,7 +133,9 @@ function buildScoreboard(data) {
             const row = document.createElement("tr")
             const name = document.createElement("td")
             const score = document.createElement("td")
+            const rank = document.createElement("td")
             score.innerText = `${data[i]['score']}`
+            rank.innerText = `${i + 1}`
 
             if(data[i]['user']['name'] === ''){
                 name.innerText = "Unknown Player"
@@ -141,7 +143,7 @@ function buildScoreboard(data) {
                 name.innerText = `${data[i]['user']['name']}`
             }
             
-            row.append(name, score)
+            row.append(rank, name, score)
             scoreboard.appendChild(row)
         }
         scoreBoardContatiner.appendChild(scoreboard)
