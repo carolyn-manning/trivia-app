@@ -63,6 +63,7 @@ function displayQuestions(data) {
         questionContainer.appendChild(question)
 
         answerArray = [data[i]["choice_1"], data[i]["choice_2"], data[i]["choice_3"], data[i]["answer"]]
+        shuffleArray(answerArray)
 
         for (let n = 0; n < answerArray.length; n++) {
             let answer = document.createElement('li')
@@ -160,22 +161,12 @@ function fadeOutEffect(fadeTarget) {
     setTimeout(function() {question.remove()}, 600)
 }
 
-// function shuffleArray(array) {
-//     let currentIndex = array.length,  randomIndex;
-  
-//     while (currentIndex != 0) {
-  
-//       // Pick a remaining element...
-//       randomIndex = Math.floor(Math.random() * currentIndex);
-//       currentIndex--;
-  
-//       // And swap it with the current element.
-//       [array[currentIndex], array[randomIndex]] = [
-//         array[randomIndex], array[currentIndex]];
-//     }
-  
-//     return array;
-//   }
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
 
 
 
