@@ -37,7 +37,7 @@ startGameForm.addEventListener("submit", startGame)
 function startGame() {
     event.preventDefault()
 
-   setTimeout(endGame, 60000)
+   setTimeout(endGame, 5000)
 
     const configObj = {
         method: "POST", 
@@ -56,6 +56,7 @@ function startGame() {
         let title = document.createElement('h3')
         let score = document.createElement('p')
         score.id = "running-score"
+        score.dataset.id = data["games"].slice(-1)[0]['id']
         score.innerText = "0"
         title.innerText = "Your Score"
         runningScoreContatiner.append(title, score)
@@ -125,8 +126,35 @@ function OptUpdateScore() {
 }
 
 function endGame() {
+    updateScoreInDB()
     questionContainer.remove()
+    fetchScore()
 }
+
+function updateScoreInDB() {
+    const scoreHTML = document.getElementById('running-score')
+    const configObj = {
+        method: "PATCH", 
+        headers: {
+            "Content-Type": 'application/json',
+            "Accept": "application/json",
+        },
+        body: JSON.stringify({
+            score: parseInt(scoreHTML.innerText)
+        })
+    }
+    
+    fetch(`http://localhost:3000/games/${parseInt(scoreHTML.dataset.id)}`, configObj)
+}
+
+function fetchScore() {
+    fetch(gamesURL)
+    .then(response => response.json())
+    .then(data => {console.log(data)})
+}
+
+
+
 
 
 
