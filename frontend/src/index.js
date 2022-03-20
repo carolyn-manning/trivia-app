@@ -14,7 +14,7 @@ startGameForm.addEventListener("submit", startGame)
 
 function startGame() {
     event.preventDefault()
-    setTimeout(endGame, 5000)
+    setTimeout(endGame, 60000)
     createUserAndGame()
     newGameContainer.remove()
     fetchQuestions()
@@ -59,7 +59,6 @@ function displayQuestions(data) {
         question.innerText = data[i]["question"]
         question.id = `q-${data[i]["id"]}`
         const answerContainer = document.createElement('ul')
-        //answerContainer.id = `answers-${data[i]["id"]}`
         question.appendChild(answerContainer)
         questionContainer.appendChild(question)
 
@@ -82,12 +81,15 @@ function answerQuestion(e, answer) {
     if(e.target.innerText === answer) {
         question.innerText = "CORRECT"
         question.style.color = "green"
+        fadeOutEffect(question)
         OptUpdateScore()
     } else {
         question.innerText = "INCORRECT"
         question.style.color = "red"
     }
+    fadeOutEffect(question)
 }
+
 
 function OptUpdateScore() { 
     const scoreHTML = document.getElementById("running-score")
@@ -144,6 +146,36 @@ function buildScoreboard(data) {
         scoreBoardContatiner.appendChild(scoreboard)
 }
 
+function fadeOutEffect(fadeTarget) {
+    var fadeEffect = setInterval(function () {
+        if (!fadeTarget.style.opacity) {
+            fadeTarget.style.opacity = 1;
+        }
+        if (fadeTarget.style.opacity > 0) {
+            fadeTarget.style.opacity -= 0.1;
+        } else {
+            clearInterval(fadeEffect);
+        }
+    }, 75);
+    setTimeout(function() {question.remove()}, 600)
+}
+
+// function shuffleArray(array) {
+//     let currentIndex = array.length,  randomIndex;
+  
+//     while (currentIndex != 0) {
+  
+//       // Pick a remaining element...
+//       randomIndex = Math.floor(Math.random() * currentIndex);
+//       currentIndex--;
+  
+//       // And swap it with the current element.
+//       [array[currentIndex], array[randomIndex]] = [
+//         array[randomIndex], array[currentIndex]];
+//     }
+  
+//     return array;
+//   }
 
 
 
