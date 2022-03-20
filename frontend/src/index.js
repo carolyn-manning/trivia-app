@@ -168,7 +168,7 @@ function buildScoreboard(data) {
 }
 
 function fadeOutEffect(fadeTarget) {
-    var fadeEffect = setInterval(function () {
+    let fadeEffect = setInterval(function () {
         if (!fadeTarget.style.opacity) {
             fadeTarget.style.opacity = 1;
         }
