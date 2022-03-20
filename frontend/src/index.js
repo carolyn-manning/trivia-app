@@ -150,7 +150,10 @@ function updateScoreInDB() {
 function fetchScore() {
     fetch(gamesURL)
     .then(response => response.json())
-    .then(data => {console.log(data)})
+    .then(data => {
+        data.sort((a, b) => (a.score < b.score) ? 1 : -1)
+        console.log(data)
+    })
 }
 
 
